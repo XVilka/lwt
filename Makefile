@@ -19,6 +19,7 @@ dev-deps :
 	  cppo \
 	  dune \
 	  ocamlfind \
+	  mmap \
 	  react \
 	  result \
 	  seq \

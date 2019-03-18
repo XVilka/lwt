@@ -23,6 +23,7 @@ depends: [
   "cppo" {build & >= "1.1.0"}
   "dune" {build}
   "ocaml" {>= "4.02.0"}
+  "mmap"
   "result" # result is needed as long as Lwt supports OCaml 4.02.
   "seq" # seq is needed as long as Lwt supports OCaml < 4.07.0.
 

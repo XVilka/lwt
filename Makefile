@@ -5,23 +5,20 @@ default: build
 # build the usual development packages
 .PHONY: build
 build:
-	dune build
+	dune build -p lwt
 
 # run unit tests for package lwt
 .PHONY: test
 test: build
-	dune runtest -j 1 --no-buffer
+	dune runtest -j 1 --no-buffer -p lwt
 
 # Install dependencies needed during development.
 .PHONY : dev-deps
 dev-deps :
 	opam install --yes --unset-root \
-	  bisect_ppx \
 	  cppo \
 	  dune \
-	  ocaml-migrate-parsetree \
 	  ocamlfind \
-	  ppx_tools_versioned \
 	  react \
 	  result \
 	  seq \
@@ -59,16 +56,12 @@ packaging-test:
 .PHONY: install-for-packaging-test
 install-for-packaging-test: clean
 	opam pin add --yes --no-action lwt .
-	opam pin add --yes --no-action lwt_ppx .
-	opam pin add --yes --no-action lwt_react .
-	opam reinstall --yes lwt lwt_ppx lwt_react
+	opam reinstall --yes lwt
 
 .PHONY: uninstall-after-packaging-test
 uninstall-after-packaging-test:
-	opam remove --yes lwt lwt_ppx lwt_react
+	opam remove --yes lwt
 	opam pin remove --yes lwt
-	opam pin remove --yes lwt_ppx
-	opam pin remove --yes lwt_react
 
 .PHONY: clean
 clean:

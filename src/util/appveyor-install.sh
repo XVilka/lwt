@@ -14,6 +14,7 @@ then
     eval `opam config env`
 
     # Pin Lwt and install its dependencies.
+    opam pin add -y mmap https://github.com/aantron/mmap.git#just-a-shim
     make dev-deps
     if [ "$LIBEV" = yes ]
     then

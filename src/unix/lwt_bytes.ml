@@ -205,7 +205,7 @@ let sendto fd buf pos len flags addr =
    +-----------------------------------------------------------------+ *)
 
 let map_file ~fd ?pos ~shared ?(size=(-1)) () =
-  Unix.map_file fd ?pos char c_layout shared [|size|]
+  Mmap.V1.map_file fd ?pos char c_layout shared [|size|]
   |> Bigarray.array1_of_genarray
 
 [@@@ocaml.warning "-3"]
